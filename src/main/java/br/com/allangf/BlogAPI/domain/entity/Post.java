@@ -33,9 +33,13 @@ public class Post {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "post_tags",
+    @JoinTable(name = "post_tag",
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "tag_id") })
-    private List<Tags> tags;
+    private List<Tag> tag;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
