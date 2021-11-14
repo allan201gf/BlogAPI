@@ -19,8 +19,8 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/v1")
-    public Post createNewPost(@RequestBody PostDTO postDTO) {
-        return postService.createNewPost(postDTO);
+    public void createNewPost(@RequestBody PostDTO postDTO) {
+        postService.createNewPost(postDTO);
     }
 
     @GetMapping("/v1")

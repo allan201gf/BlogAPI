@@ -7,11 +7,9 @@ import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
 import br.com.allangf.BlogAPI.domain.repository.PostRepository;
 import br.com.allangf.BlogAPI.domain.repository.TagRepository;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
-import br.com.allangf.BlogAPI.rest.Helpers;
+import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
-import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,15 +33,16 @@ public class PostServiceImpl implements PostService {
         post.setTitle(postDTO.getTitle());
         post.setPostDate(LocalDate.now());
 
-        Tag tag = tagRepository.findByNameTag(postDTO.getTag()).get(0);
-
         List<Tag> tags = new ArrayList<>();
-        tags.add(tag);
+
+        for (String tag : postDTO.getTag()) {
+            tags.add(tagRepository.findByNameTag(tag).get(0));
+        }
 
         post.setTag(tags);
 
         User user = userRepository.findById(postDTO.getUser()).orElseThrow(
-                () -> new RuleOfException("Usuário não encontrado")
+                () -> new RuleOfException(Errors.USER_NOR_FOUND)
         );
 
         post.setUser(user);

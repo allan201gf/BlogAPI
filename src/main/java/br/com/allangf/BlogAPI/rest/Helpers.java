@@ -12,7 +12,7 @@ public class Helpers {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             return LocalDate.parse(dateString, format);
         } catch (Exception e) {
-            throw new RuleOfException("Data invalida ou nula, formato correto: dd/mm/aaaa ");
+            throw new RuleOfException(Errors.INVALID_DATE);
         }
 
     }

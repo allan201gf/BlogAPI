@@ -29,4 +29,10 @@ public class TagServiceImpl implements TagService {
         return tagRepository.findAll();
     }
 
+    @Override
+    public List<Post> postPelaTag(String nameTag) {
+        Tag tag = tagRepository.findByNameTag(nameTag).get(0);
+        return tag.getPost();
+    }
+
 }
