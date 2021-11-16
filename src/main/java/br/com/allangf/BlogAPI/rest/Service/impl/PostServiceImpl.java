@@ -25,7 +25,17 @@ public class PostServiceImpl implements PostService {
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
 
-    public Post createNewPost(PostDTO postDTO) {
+    public void createNewPost(PostDTO postDTO) {
+
+        if (postDTO.getPostBody() == null) {
+            throw new RuleOfException(Errors.POST_BODY_IS_REQUIRED);
+        }
+        if (postDTO.getTag() == null) {
+            throw new RuleOfException(Errors.TAG_IS_REQUIRED);
+        }
+        if (postDTO.getTitle() == null) {
+            throw new RuleOfException(Errors.TITLE_IS_REQUIRED);
+        }
 
         Post post = new Post();
 
@@ -36,6 +46,11 @@ public class PostServiceImpl implements PostService {
         List<Tag> tags = new ArrayList<>();
 
         for (String tag : postDTO.getTag()) {
+            if (tagRepository.findByNameTag(tag).size() == 0) {
+                Tag newTag = new Tag();
+                newTag.setNameTag(tag);
+                tagRepository.save(newTag);
+            }
             tags.add(tagRepository.findByNameTag(tag).get(0));
         }
 
@@ -47,7 +62,7 @@ public class PostServiceImpl implements PostService {
 
         post.setUser(user);
 
-        return postRepository.save(post);
+        postRepository.save(post);
 
     }
 
@@ -55,5 +70,11 @@ public class PostServiceImpl implements PostService {
     public List<Post> allPost() {
         return postRepository.findAll();
     }
+
+    @Override
+    public List<Post> searchPostByTitle(String title) {
+        return postRepository.searchPostByTitle(title);
+    }
+
 
 }

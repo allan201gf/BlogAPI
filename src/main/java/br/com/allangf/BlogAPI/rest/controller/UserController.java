@@ -9,6 +9,7 @@ import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,7 @@ public class UserController {
 
     @ApiOperation("Delete user by Id")
     @DeleteMapping("/v1/delete/id/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
     }

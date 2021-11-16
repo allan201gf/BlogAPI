@@ -9,6 +9,7 @@ import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Service.TagService;
 import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,9 +39,24 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public List<Post> postPelaTag(String nameTag) {
-        Tag tag = tagRepository.findByNameTag(nameTag).get(0);
-        return tag.getPost();
+    public List<Post> searchPostByTag(String nameTag) {
+        try {
+            Tag tag = tagRepository.findByNameTag(nameTag).get(0);
+            return tag.getPost();
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuleOfException(Errors.NO_POSTS_FOUND);
+        }
+
+    }
+
+    @Override
+    public void deleteTagById(int tagId) {
+        try {
+            tagRepository.deleteById(tagId);
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuleOfException(Errors.TAG_NOT_FOUND);
+        }
+
     }
 
 }

@@ -12,6 +12,8 @@ public interface TagService {
 
     List<Tag> allTag();
 
-    List<Post> postPelaTag(String nameTag);
+    List<Post> searchPostByTag(String nameTag);
+
+    void deleteTagById(int id);
 
 }
