@@ -1,18 +1,24 @@
 package br.com.allangf.BlogAPI.rest.config.dto;
 
+import br.com.allangf.BlogAPI.rest.Errors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
 
+    @NotNull(message = Errors.NAME_IS_REQUIRED)
     private String name;
+    @NotNull(message = Errors.BIRTH_DATE_IS_REQUIRED)
     private String birthDate;
+    @NotNull(message = Errors.EMAIL_IS_REQUIRED)
     private String email;
 
 }

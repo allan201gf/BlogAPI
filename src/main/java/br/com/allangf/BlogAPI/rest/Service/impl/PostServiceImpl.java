@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
         post.setTag(tags);
 
         User user = userRepository.findById(postDTO.getUser()).orElseThrow(
-                () -> new RuleOfException(Errors.USER_NOR_FOUND)
+                () -> new RuleOfException(Errors.USER_NOT_FOUND)
         );
 
         post.setUser(user);
