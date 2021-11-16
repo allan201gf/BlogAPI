@@ -10,8 +10,10 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 ## Features
 * Criação e exclusão de user sem SpringSecurity [✔]
 * Criação e exclusão de tags de forma manual [✔]
+* Exibição de todas as tags [✔]
 * Caso a tag escolhida no post não exista, cria-la automaticamente [✔]
 * Criação e exclusão de posts [✔]
+* Exibição de todos os posts [✔]
 * Pesquisa por posts a partir de uma determinada tag [✔]
 * Pesquisa por post pelo título [✔]
 * Visualização resumida dos posts [✖]
