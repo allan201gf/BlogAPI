@@ -7,6 +7,19 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 
 > http://localhost:80/swagger-ui.html
 
+## Features
+* Criação e exclusão de user sem SpringSecurity [✔]
+* Criação e exclusão de tags de forma manual [✔]
+* Caso a tag escolhida no post não exista, cria-la automaticamente [✔]
+* Criação e exclusão de posts [✔]
+* Pesquisa por posts a partir de uma determinada tag [✔]
+* Pesquisa por post pelo título [✔]
+* Visualização resumida dos posts [✖]
+* Filtragem de posts por data [✖]
+* Contagem de acessos de cada post [✖]
+* Exibir posts mais acessados [✖]
+* ...
+
 ## 🛠️ Em desenvolvimento com
 
 * [IntelliJ](http://www.dropwizard.io/1.0.2/docs/) - A IDE do ❤️
