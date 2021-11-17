@@ -12,6 +12,8 @@ public interface UserService {
 
     User createNewUser(UserDTO userDTO);
 
+    void createUserList(List<UserDTO> userDTO);
+
     List<User> allUser();
 
     void deleteUser(int userId);

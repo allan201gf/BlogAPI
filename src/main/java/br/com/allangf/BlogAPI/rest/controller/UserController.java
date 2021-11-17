@@ -41,5 +41,11 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
+    @ApiOperation("Create new list user")
+    @PostMapping("/v1/createUserList")
+    public void createUserList(@Valid @RequestBody List<UserDTO> userDTO) {
+        userService.createUserList(userDTO);
+    }
+
 
 }

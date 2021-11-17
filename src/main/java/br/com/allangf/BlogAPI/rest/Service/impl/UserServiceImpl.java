@@ -46,6 +46,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void createUserList(List<UserDTO> userDTO) {
+        userDTO.forEach(this::createNewUser);
+    }
+
+    @Override
     public List<User> allUser() {
         return userRepository.findAll();
     }
