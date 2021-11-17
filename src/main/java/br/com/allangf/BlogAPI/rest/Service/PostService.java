@@ -13,4 +13,6 @@ public interface PostService {
 
     List<Post> searchPostByTitle(String title);
 
+    List<Post> allPostAbstract();
+
 }

@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -76,5 +76,15 @@ public class PostServiceImpl implements PostService {
         return postRepository.searchPostByTitle(title);
     }
 
+    @Override
+    public List<Post> allPostAbstract() {
+        List<Post> allPost = allPost();
 
+        for (int i = 1; i <= allPost.size(); i++) {
+            allPost.get(i-1).setPostBody(allPost.get(i-1).getPostBody().substring(0, 15).concat(" ..."));
+        }
+
+        return allPost;
+
+    }
 }

@@ -40,5 +40,10 @@ public class PostController {
         return postService.searchPostByTitle(title);
     }
 
+    @ApiOperation("Alla post abstract")
+    @GetMapping("/v1/allPostAbstract")
+    public List<Post> allPostAbstract() {
+        return postService.allPostAbstract();
+    }
 
 }
