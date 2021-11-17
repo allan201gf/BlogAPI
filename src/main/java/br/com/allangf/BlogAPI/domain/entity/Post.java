@@ -22,7 +22,7 @@ public class Post {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "post_body")
+    @Column(name = "post_body", length = 10000)
     private String postBody;
 
     @Column(name = "post_date")
