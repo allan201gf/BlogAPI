@@ -73,18 +73,19 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> searchPostByTitle(String title) {
-        return postRepository.searchPostByTitle(title);
+        List<Post> posts = postRepository.searchPostByTitle(title);
+        return postAbstract(posts);
     }
 
     @Override
     public List<Post> allPostAbstract() {
-        List<Post> allPost = allPost();
+        return postAbstract(allPost());
+    }
 
-        for (int i = 1; i <= allPost.size(); i++) {
-            allPost.get(i-1).setPostBody(allPost.get(i-1).getPostBody().substring(0, 120).concat("..."));
+    public List<Post> postAbstract(List<Post> posts) {
+        for (int i = 1; i <= posts.size(); i++) {
+            posts.get(i-1).setPostBody(posts.get(i-1).getPostBody().substring(0, 15).concat(" ..."));
         }
-
-        return allPost;
-
+        return posts;
     }
 }
