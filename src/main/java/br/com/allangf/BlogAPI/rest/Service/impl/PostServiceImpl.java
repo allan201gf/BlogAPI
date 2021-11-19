@@ -8,6 +8,7 @@ import br.com.allangf.BlogAPI.domain.repository.PostRepository;
 import br.com.allangf.BlogAPI.domain.repository.TagRepository;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
+import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
 import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
 import lombok.RequiredArgsConstructor;
@@ -80,6 +81,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> allPostAbstract() {
         return postAbstract(allPost());
+    }
+
+    @Override
+    public List<Post> searchPostByTimeInterval(String dateStart, String dateEnd) {
+        LocalDate dateStartFormated = Helpers.stringForDate(dateStart);
+        LocalDate dateEndFormated = Helpers.stringForDate(dateEnd);
+
+        return postRepository.searchPostByTimeInterval(dateStartFormated, dateEndFormated);
+
     }
 
     public List<Post> postAbstract(List<Post> posts) {

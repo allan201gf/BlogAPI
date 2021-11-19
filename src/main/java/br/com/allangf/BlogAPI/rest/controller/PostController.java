@@ -40,10 +40,16 @@ public class PostController {
         return postService.searchPostByTitle(title);
     }
 
-    @ApiOperation("Alla post abstract")
+    @ApiOperation("All post abstract")
     @GetMapping("/v1/allPostAbstract")
     public List<Post> allPostAbstract() {
         return postService.allPostAbstract();
+    }
+
+    @ApiOperation("Search post by time interval")
+    @GetMapping("/v1/searchPostByTimeInterval")
+    public List<Post> searchPostByTimeInterval(@RequestParam String dateStart,@RequestParam String dateEnd) {
+        return postService.searchPostByTimeInterval(dateStart, dateEnd);
     }
 
 }

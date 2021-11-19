@@ -15,4 +15,6 @@ public interface PostService {
 
     List<Post> allPostAbstract();
 
+    List<Post> searchPostByTimeInterval(String dateStart, String dateEnd);
+
 }
