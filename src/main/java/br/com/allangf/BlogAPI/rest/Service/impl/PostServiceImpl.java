@@ -84,7 +84,7 @@ public class PostServiceImpl implements PostService {
 
     public List<Post> postAbstract(List<Post> posts) {
         for (int i = 1; i <= posts.size(); i++) {
-            posts.get(i-1).setPostBody(posts.get(i-1).getPostBody().substring(0, 15).concat(" ..."));
+            posts.get(i-1).setPostBody(posts.get(i-1).getPostBody().substring(0, 120).concat(" ..."));
         }
         return posts;
     }
