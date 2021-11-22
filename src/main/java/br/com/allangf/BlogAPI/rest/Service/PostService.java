@@ -17,4 +17,8 @@ public interface PostService {
 
     List<Post> searchPostByTimeInterval(String dateStart, String dateEnd);
 
+    Post getPostById(int id);
+
+    void deletePostById(int id);
+
 }

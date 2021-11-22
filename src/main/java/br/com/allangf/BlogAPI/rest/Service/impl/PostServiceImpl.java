@@ -12,6 +12,7 @@ import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
 import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -89,7 +90,20 @@ public class PostServiceImpl implements PostService {
         LocalDate dateEndFormated = Helpers.stringForDate(dateEnd);
 
         return postRepository.searchPostByTimeInterval(dateStartFormated, dateEndFormated);
+    }
 
+    @Override
+    public Post getPostById(int id) {
+        try{
+            return postRepository.findByPostId(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuleOfException(Errors.INVALID_POST_ID);
+        }
+    }
+
+    @Override
+    public void deletePostById(int id) {
+        postRepository.deleteById(id);
     }
 
     public List<Post> postAbstract(List<Post> posts) {
@@ -98,4 +112,6 @@ public class PostServiceImpl implements PostService {
         }
         return posts;
     }
+
+
 }

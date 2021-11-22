@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query("select p from Post p where p.postDate >=:dateStart and p.postDate <=:dateEnd")
     List<Post> searchPostByTimeInterval(LocalDate dateStart, LocalDate dateEnd);
 
+    Post findByPostId (int id);
+
 }
