@@ -28,6 +28,9 @@ public class Post {
     @Column(name = "post_date")
     private LocalDate postDate;
 
+    @Column(name = "counter_hits")
+    private int counterHits;
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,

@@ -44,6 +44,7 @@ public class PostServiceImpl implements PostService {
         post.setPostBody(postDTO.getPostBody());
         post.setTitle(postDTO.getTitle());
         post.setPostDate(LocalDate.now());
+        post.setCounterHits(0);
 
         List<Tag> tags = new ArrayList<>();
 
@@ -89,13 +90,18 @@ public class PostServiceImpl implements PostService {
         LocalDate dateStartFormated = Helpers.stringForDate(dateStart);
         LocalDate dateEndFormated = Helpers.stringForDate(dateEnd);
 
-        return postRepository.searchPostByTimeInterval(dateStartFormated, dateEndFormated);
+        List<Post> posts = postRepository.searchPostByTimeInterval(dateStartFormated, dateEndFormated);
+        return postAbstract(posts);
     }
 
     @Override
     public Post getPostById(int id) {
         try{
-            return postRepository.findByPostId(id);
+            Post post = postRepository.findByPostId(id);
+            post.setCounterHits(post.getCounterHits()+1);
+            postRepository.save(post);
+
+            return post;
         } catch (EmptyResultDataAccessException e) {
             throw new RuleOfException(Errors.INVALID_POST_ID);
         }
