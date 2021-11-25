@@ -21,4 +21,6 @@ public interface PostService {
 
     void deletePostById(int id);
 
+    List<Post> postMostAccessed();
+
 }

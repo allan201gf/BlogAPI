@@ -65,4 +65,9 @@ public class PostController {
         postService.deletePostById(id);
     }
 
+    @GetMapping("/v1/postMostAccessed")
+    public List<Post> postMostAccessed() {
+        return postService.postMostAccessed();
+    }
+
 }

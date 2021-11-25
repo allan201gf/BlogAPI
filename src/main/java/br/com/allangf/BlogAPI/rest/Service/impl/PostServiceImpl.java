@@ -112,6 +112,11 @@ public class PostServiceImpl implements PostService {
         postRepository.deleteById(id);
     }
 
+    @Override
+    public List<Post> postMostAccessed() {
+        return postRepository.postMostAccessed();
+    }
+
     public List<Post> postAbstract(List<Post> posts) {
         for (int i = 1; i <= posts.size(); i++) {
             posts.get(i-1).setPostBody(posts.get(i-1).getPostBody().substring(0, 120).concat(" ..."));
