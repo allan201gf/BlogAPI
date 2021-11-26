@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
@@ -26,6 +27,7 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
+    private final EntityManager entityManager;
 
     public void createNewPost(PostDTO postDTO) {
 
@@ -114,7 +116,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> postMostAccessed() {
-        return postRepository.postMostAccessed();
+        return entityManager.createQuery("select p from Post p Order by p.counterHits DESC",
+                Post.class).setMaxResults(10).getResultList();
     }
 
     public List<Post> postAbstract(List<Post> posts) {
