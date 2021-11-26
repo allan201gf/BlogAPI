@@ -47,6 +47,7 @@ public class PostServiceImpl implements PostService {
         post.setTitle(postDTO.getTitle());
         post.setPostDate(LocalDate.now());
         post.setCounterHits(0);
+        post.setHasEdited(false);
 
         List<Tag> tags = new ArrayList<>();
 
@@ -144,6 +145,7 @@ public class PostServiceImpl implements PostService {
                 }
                 post.setTag(tags);
             }
+            post.setHasEdited(true);
             postRepository.save(post);
 
         } catch (EmptyResultDataAccessException e) {

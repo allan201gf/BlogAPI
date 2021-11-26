@@ -31,6 +31,9 @@ public class Post {
     @Column(name = "counter_hits")
     private int counterHits;
 
+    @Column(name = "has_edited")
+    boolean hasEdited;
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
