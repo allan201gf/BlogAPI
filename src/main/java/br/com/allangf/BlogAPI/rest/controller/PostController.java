@@ -70,4 +70,9 @@ public class PostController {
         return postService.postMostAccessed();
     }
 
+    @PatchMapping("/v1/updatePostById/{id}")
+    public void updatePostById(@PathVariable int id, @RequestBody PostDTO postDTO) {
+        postService.updatePostById(id, postDTO);
+    }
+
 }

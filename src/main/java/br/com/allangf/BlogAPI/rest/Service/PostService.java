@@ -23,4 +23,6 @@ public interface PostService {
 
     List<Post> postMostAccessed();
 
+    void updatePostById(int id, PostDTO postDTO);
+
 }

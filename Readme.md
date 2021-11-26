@@ -21,7 +21,7 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 * Filtragem de posts por data [✔]
 * Contagem de acessos de cada post [✔] (A contagem só é incrementada quando um post é acessado de forma completa)
 * Exibir posts mais acessados [✔] (retorna os 5 posts mais acessados)
-* Edição de posts [✖]
+* Edição de posts [✔]
 * Login de usuário para criação e edição de posts [✖]
 * ...
 

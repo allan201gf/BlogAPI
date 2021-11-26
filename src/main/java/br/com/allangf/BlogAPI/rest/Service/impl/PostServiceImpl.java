@@ -98,6 +98,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getPostById(int id) {
+
         try{
             Post post = postRepository.findByPostId(id);
             post.setCounterHits(post.getCounterHits()+1);
@@ -118,6 +119,37 @@ public class PostServiceImpl implements PostService {
     public List<Post> postMostAccessed() {
         return entityManager.createQuery("select p from Post p Order by p.counterHits DESC",
                 Post.class).setMaxResults(10).getResultList();
+    }
+
+    @Override
+    public void updatePostById(int id, PostDTO postDTO) {
+        try {
+            Post post = postRepository.findByPostId(id);
+
+            if (!postDTO.getPostBody().isEmpty()) {
+                post.setPostBody(postDTO.getPostBody());
+            }
+            if (!postDTO.getTitle().isEmpty()) {
+                post.setTitle(postDTO.getTitle());
+            }
+            if (!postDTO.getTag().isEmpty()) {
+                List<Tag> tags = new ArrayList<>();
+                for (String tag : postDTO.getTag()) {
+                    if (tagRepository.findByNameTag(tag).size() == 0) {
+                        Tag newTag = new Tag();
+                        newTag.setNameTag(tag);
+                        tagRepository.save(newTag);
+                    }
+                    tags.add(tagRepository.findByNameTag(tag).get(0));
+                }
+                post.setTag(tags);
+            }
+            postRepository.save(post);
+
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuleOfException(Errors.INVALID_POST_ID);
+        }
+
     }
 
     public List<Post> postAbstract(List<Post> posts) {
