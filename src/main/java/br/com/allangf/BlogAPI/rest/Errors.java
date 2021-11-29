@@ -15,4 +15,5 @@ public class Errors {
     public static final String TITLE_IS_REQUIRED = "Title is required";
     public static final String TAG_NOT_FOUND = "Tag not found";
     public static final String INVALID_POST_ID = "Invalid post id";
+    public static final String POST_ID_IN_USE = "Post id in use, delete the post before";
 }

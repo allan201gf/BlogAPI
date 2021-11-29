@@ -9,6 +9,7 @@ import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Service.TagService;
 import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,8 @@ public class TagServiceImpl implements TagService {
             tagRepository.deleteById(tagId);
         } catch (EmptyResultDataAccessException e) {
             throw new RuleOfException(Errors.TAG_NOT_FOUND);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuleOfException(Errors.POST_ID_IN_USE);
         }
 
     }
