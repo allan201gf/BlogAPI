@@ -9,6 +9,7 @@ import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User createNewUser(UserDTO userDTO) {
 
@@ -41,6 +43,9 @@ public class UserServiceImpl implements UserService {
         user.setBirthDate(Helpers.stringForDate(userDTO.getBirthDate()));
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
+        user.setLogin(userDTO.getLogin());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setRole("USER");
 
         return userRepository.save(user);
     }

@@ -14,6 +14,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UserDTO {
 
+    @NotNull(message = Errors.LOGIN_IS_REQUIRED)
+    private String login;
+    @NotNull(message = Errors.PASSWORD_IS_REQUIRED)
+    private String password;
     @NotNull(message = Errors.NAME_IS_REQUIRED)
     private String name;
     @NotNull(message = Errors.BIRTH_DATE_IS_REQUIRED)
