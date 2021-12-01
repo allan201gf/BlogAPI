@@ -19,4 +19,5 @@ public class Errors {
     public static final String LOGIN_IS_REQUIRED = "Login is required";
     public static final String PASSWORD_IS_REQUIRED = "Password is required";
     public static final String PASSWORD_IS_WRONG = "Password is wrong";
+    public static final String POST_ANOTHER_USER = "Post was written by another user";
 }

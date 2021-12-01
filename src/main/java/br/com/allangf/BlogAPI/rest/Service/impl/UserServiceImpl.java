@@ -7,6 +7,7 @@ import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
+import br.com.allangf.BlogAPI.rest.config.Roles;
 import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setLogin(userDTO.getLogin());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setRole("USER");
+        user.setRole(Roles.USER);
 
         return userRepository.save(user);
     }

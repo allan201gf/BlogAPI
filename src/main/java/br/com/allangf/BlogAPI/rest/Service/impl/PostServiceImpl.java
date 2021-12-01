@@ -10,6 +10,7 @@ import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
+import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,6 +29,7 @@ public class PostServiceImpl implements PostService {
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
     private final EntityManager entityManager;
+    private final UserService userService;
 
     public void createNewPost(PostDTO postDTO) {
 
@@ -62,11 +64,9 @@ public class PostServiceImpl implements PostService {
 
         post.setTag(tags);
 
-        User user = userRepository.findById(postDTO.getUser()).orElseThrow(
+        post.setUser(userService.getUserLogged().orElseThrow(
                 () -> new RuleOfException(Errors.USER_NOT_FOUND)
-        );
-
-        post.setUser(user);
+        ));
 
         postRepository.save(post);
 
@@ -101,7 +101,7 @@ public class PostServiceImpl implements PostService {
     public Post getPostById(int id) {
 
         try{
-            Post post = postRepository.findByPostId(id);
+            Post post = postRepository.findByPostId(id).orElseThrow(() -> new RuleOfException(Errors.NO_POSTS_FOUND));
             post.setCounterHits(post.getCounterHits()+1);
             postRepository.save(post);
 
@@ -124,8 +124,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePostById(int id, PostDTO postDTO) {
-        try {
-            Post post = postRepository.findByPostId(id);
+
+        User userLogged = userService.getUserLogged().orElseThrow(() -> new RuleOfException(Errors.USER_NOT_FOUND));
+
+        Post post = postRepository.findByPostId(id).orElseThrow(() -> new RuleOfException(Errors.NO_POSTS_FOUND));
+
+        if (userLogged.getUserId() != post.getUser().getUserId()) {
+            throw new RuleOfException(Errors.POST_ANOTHER_USER);
+        }
 
             if (!postDTO.getPostBody().isEmpty()) {
                 post.setPostBody(postDTO.getPostBody());
@@ -147,10 +153,6 @@ public class PostServiceImpl implements PostService {
             }
             post.setHasEdited(true);
             postRepository.save(post);
-
-        } catch (EmptyResultDataAccessException e) {
-            throw new RuleOfException(Errors.INVALID_POST_ID);
-        }
 
     }
 
