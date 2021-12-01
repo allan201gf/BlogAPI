@@ -1,5 +1,6 @@
 package br.com.allangf.BlogAPI.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class User {
     @Column(name = "login")
     private String login;
 
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 

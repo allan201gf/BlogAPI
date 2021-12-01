@@ -10,6 +10,7 @@ import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -20,5 +21,7 @@ public interface UserService {
     void deleteUser(int userId);
 
     public TokenDTO authenticate(CredentialsDTO credentialsDTO);
+
+    Optional<User> getUserLogged ();
 
 }

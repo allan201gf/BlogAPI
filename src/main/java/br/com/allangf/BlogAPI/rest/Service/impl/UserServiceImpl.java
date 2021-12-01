@@ -14,6 +14,8 @@ import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -90,6 +93,11 @@ public class UserServiceImpl implements UserService {
         } catch (UsernameNotFoundException | PasswordInvalidOfException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
+    }
+
+    public Optional<User> getUserLogged () {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByLogin(authentication.getName());
     }
 
 }

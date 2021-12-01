@@ -52,9 +52,7 @@ public class JwtService {
     }
 
     public String getLoginUser(String token) throws ExpiredJwtException {
-        String string = (String) getClaims(token).getSubject();
-        System.out.printf("usuario: " + string);
-        return string;
+        return (String) getClaims(token).getSubject();
     }
 
 }
