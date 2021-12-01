@@ -5,6 +5,8 @@ import br.com.allangf.BlogAPI.domain.entity.User;
 
 import br.com.allangf.BlogAPI.rest.Service.UserService;
 
+import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
+import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -41,10 +43,9 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @ApiOperation("Create new list user")
-    @PostMapping("/v1/createUserList")
-    public void createUserList(@Valid @RequestBody List<UserDTO> userDTO) {
-        userService.createUserList(userDTO);
+    @PostMapping("/v1/login")
+    public TokenDTO authenticate(@RequestBody CredentialsDTO credentialsDTO) {
+        return userService.authenticate(credentialsDTO);
     }
 
 

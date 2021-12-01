@@ -1,6 +1,7 @@
 package br.com.allangf.BlogAPI.rest.Service.impl;
 
 import br.com.allangf.BlogAPI.domain.entity.User;
+import br.com.allangf.BlogAPI.domain.exception.PasswordInvalidOfException;
 import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
@@ -19,6 +20,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public UserDetails authenticate(User user) {
+        UserDetails userDetails = loadUserByUsername(user.getLogin());
+        boolean passwordCorrect = encoder.matches(user.getPassword(), userDetails.getPassword());
+        if (passwordCorrect) {
+            return userDetails;
+        }
+        throw new PasswordInvalidOfException(Errors.PASSWORD_IS_WRONG);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,6 +1,7 @@
 package br.com.allangf.BlogAPI.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id

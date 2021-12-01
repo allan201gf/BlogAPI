@@ -18,4 +18,5 @@ public class Errors {
     public static final String POST_ID_IN_USE = "Post id in use, delete the post before";
     public static final String LOGIN_IS_REQUIRED = "Login is required";
     public static final String PASSWORD_IS_REQUIRED = "Password is required";
+    public static final String PASSWORD_IS_WRONG = "Password is wrong";
 }
