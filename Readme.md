@@ -8,7 +8,7 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 > http://localhost:80/swagger-ui.html
 
 ## Features
-* Criação e exclusão de user sem SpringSecurity [✔]
+* Criação e exclusão de user sem SpringSecurity [✔] (Inativado)
 * Criação e exclusão de tags de forma manual [✔]
 * Exibição de todas as tags [✔]
 * Caso a tag escolhida no post não exista, cria-la automaticamente [✔]
@@ -22,7 +22,9 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 * Exibir posts mais acessados [✔] (retorna os 5 posts mais acessados)
 * Edição de posts [✔]
 * Travar a exclusão de tags que possuem posts associados [✔]
-* Login de usuário para criação e edição de posts [✖]
+* Métodos para registrar e logar no sistema [✔]
+* Implementação para apenas o usuário que criou o post poder edita-lo [✔]
+* Login via Bearer token no Swagger [✔] (necessário obter o token via endpoint de login e digitar "Bearer " na frente)
 * ...
 
 ## 🛠️ Em desenvolvimento com

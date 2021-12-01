@@ -46,15 +46,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/api/tag/**")
-                        .hasRole("USER")
+                        .hasRole(Roles.USER)
                     .antMatchers(HttpMethod.POST, "/api/post/**")
-                        .hasRole("USER")
+                        .hasRole(Roles.USER)
+                    .antMatchers(HttpMethod.PATCH, "/api/post/**")
+                        .hasRole(Roles.USER)
+                    .antMatchers("/v2/api-docs",
+                            "/configuration/ui",
+                            "/swagger-resources/**",
+                            "/configuration/security",
+                            "/swagger-ui.html",
+                            "/webjars/**")
+                        .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/tag/**")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/post/**")
                         .permitAll()
                     .antMatchers("/api/user/**")
                         .permitAll()
+                    .anyRequest().denyAll()
                 .and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
