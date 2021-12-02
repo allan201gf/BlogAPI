@@ -3,14 +3,20 @@
 Projeto de uma API para gerenciamento de postagens em um blog utilizando autenticação.<br/>
 O intuito desta API é utilizar-se de diversos recursos do SpringBoot, incluindo Spring Security de modo a aprimorar minhas habilidades com a tecnologia.
 
+Para facilitar os testes da API, ela foi desenvolvida utilizando o banco de dados H2, 
+um banco em memória que não há necessidade de executar um banco SQL fora da aplicação. 
+Em contrapartida, toda vez que o sistema é reiniciado, todos os dados são perdidos.
+<br>
+A Qualquer momento o banco pode ser alterado refaturando o arquivo abaixo.
+> resources/application.properties
 
-
-A documentação dos endpoints é feita via Swagger no link abaixo e algumas informações podem ser consultadas neste mesmo arquivo:
+A documentação dos endpoints é feita via Swagger no link abaixo e algumas informações podem ser consultadas neste mesmo arquivo.
 
 > http://localhost:80/swagger-ui.html
 
 ## Features
-Implementaçõs do sistema, para consultar os modelos de respostas da aplicação deve-se utilizar o Swagger no link acima.<br>
+Implementações do sistema<br>
+Para consultar os modelos de respostas da aplicação deve-se utilizar o Swagger no link acima.<br>
 
 ### Registro e Login de usuários
 Para criar um post na plataforma é necessário que o usuário esteja logado.
@@ -188,8 +194,10 @@ Dados no body:
 
 ### Futuras implementações
 
-* Criação do usuário administrador que possa manipular qualquer post publicado por qualquer usuário do sistema.
-* ...
+* Criação do usuário administrador que possa manipular qualquer post publicado por qualquer usuário do sistema;
+* Criação de convites de usuário a partir da conta administrator (impede que um usuário não cadastrado publique no sistema);
+* Bloqueio de usuários através de conta de administrador;
+* Alteração de senha informando senha atual e nova senha.
 
 ## 🛠️ Em desenvolvimento com
 
