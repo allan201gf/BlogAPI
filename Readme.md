@@ -63,9 +63,60 @@ Utilize este endpoint para deletar o usuário que está logado
 DELETE  /api/user/v1/delete
 ~~~
 
+### Tags
+As tags são utilizadas como categoria para os posts, elas podem ser criadas a partir de endpoints especificos, ou se na criação do post ela ainda não exista, será criada automaticamente
 
+#### Criação de tags
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+POST  /api/tag/v1
+~~~
+Dados no body:
+~~~
+{
+  "nameTag": "nomeDaTag"
+}
+~~~
+#### Listagem das tags
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+GET  /api/tag/v1
+~~~
+#### Deletar tag
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+DELETE  /api/tag/v1/delete/{tagId}
+~~~
+#### Listagem de posts a partir de uma tag
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+GET  /api/tag/v1/searchPostByTag/{nameTag}
+~~~
 
+### Posts
+O gerenciamento dos posts ficam por conta os usuários logados, a exibição e pesquisa podem ser acessados sem a autenticação
 
+#### Criação de posts
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+POST  /api/post/v1
+~~~
+Dados no body:
+~~~
+{
+    "title": "primeiro post",
+    "postBody": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+    of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+    Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMake
+    including versions of Lorem Ipsum.",
+    "tag": [
+        "Tecnologia",
+        "Iphone"
+        ]
+}
+~~~
 
 ### Itens a serem incluidos na documentação
 

@@ -17,6 +17,5 @@ public class PostDTO {
     private String title;
     private String postBody;
     private List<String> tag;
-    private int user;
 
 }
