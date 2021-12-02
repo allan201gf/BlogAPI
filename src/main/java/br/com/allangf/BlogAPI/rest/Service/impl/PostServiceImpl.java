@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -100,9 +100,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getPostById(int id) {
 
-        try{
+        try {
             Post post = postRepository.findByPostId(id).orElseThrow(() -> new RuleOfException(Errors.NO_POSTS_FOUND));
-            post.setCounterHits(post.getCounterHits()+1);
+            post.setCounterHits(post.getCounterHits() + 1);
             postRepository.save(post);
 
             return post;
@@ -133,32 +133,32 @@ public class PostServiceImpl implements PostService {
             throw new RuleOfException(Errors.POST_ANOTHER_USER);
         }
 
-            if (!postDTO.getPostBody().isEmpty()) {
-                post.setPostBody(postDTO.getPostBody());
-            }
-            if (!postDTO.getTitle().isEmpty()) {
-                post.setTitle(postDTO.getTitle());
-            }
-            if (!postDTO.getTag().isEmpty()) {
-                List<Tag> tags = new ArrayList<>();
-                for (String tag : postDTO.getTag()) {
-                    if (tagRepository.findByNameTag(tag).size() == 0) {
-                        Tag newTag = new Tag();
-                        newTag.setNameTag(tag);
-                        tagRepository.save(newTag);
-                    }
-                    tags.add(tagRepository.findByNameTag(tag).get(0));
+        if (!postDTO.getPostBody().isEmpty()) {
+            post.setPostBody(postDTO.getPostBody());
+        }
+        if (!postDTO.getTitle().isEmpty()) {
+            post.setTitle(postDTO.getTitle());
+        }
+        if (!postDTO.getTag().isEmpty()) {
+            List<Tag> tags = new ArrayList<>();
+            for (String tag : postDTO.getTag()) {
+                if (tagRepository.findByNameTag(tag).size() == 0) {
+                    Tag newTag = new Tag();
+                    newTag.setNameTag(tag);
+                    tagRepository.save(newTag);
                 }
-                post.setTag(tags);
+                tags.add(tagRepository.findByNameTag(tag).get(0));
             }
-            post.setHasEdited(true);
-            postRepository.save(post);
+            post.setTag(tags);
+        }
+        post.setHasEdited(true);
+        postRepository.save(post);
 
     }
 
     public List<Post> postAbstract(List<Post> posts) {
         for (int i = 1; i <= posts.size(); i++) {
-            posts.get(i-1).setPostBody(posts.get(i-1).getPostBody().substring(0, 120).concat(" ..."));
+            posts.get(i - 1).setPostBody(posts.get(i - 1).getPostBody().substring(0, 120).concat(" ..."));
         }
         return posts;
     }

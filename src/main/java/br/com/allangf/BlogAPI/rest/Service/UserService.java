@@ -1,13 +1,9 @@
 package br.com.allangf.BlogAPI.rest.Service;
 
-import br.com.allangf.BlogAPI.domain.entity.Post;
-import br.com.allangf.BlogAPI.domain.entity.Tag;
 import br.com.allangf.BlogAPI.domain.entity.User;
 import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +16,8 @@ public interface UserService {
 
     void deleteUser();
 
-    public TokenDTO authenticate(CredentialsDTO credentialsDTO);
+    TokenDTO authenticate(CredentialsDTO credentialsDTO);
 
-    Optional<User> getUserLogged ();
+    Optional<User> getUserLogged();
 
 }

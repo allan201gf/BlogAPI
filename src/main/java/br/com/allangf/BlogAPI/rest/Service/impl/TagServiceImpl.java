@@ -4,7 +4,6 @@ import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.domain.entity.Tag;
 import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
 import br.com.allangf.BlogAPI.domain.repository.TagRepository;
-import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Service.TagService;
 import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;

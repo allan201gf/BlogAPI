@@ -45,33 +45,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/tag/**")
-                        .hasRole(Roles.USER)
-                    .antMatchers(HttpMethod.POST, "/api/post/**")
-                        .hasRole(Roles.USER)
-                    .antMatchers(HttpMethod.PATCH, "/api/post/**")
-                        .hasRole(Roles.USER)
-                    .antMatchers(HttpMethod.DELETE, "/api/post/**")
-                        .hasRole(Roles.USER)
-                    .antMatchers(HttpMethod.DELETE, "/api/user/**")
-                        .hasRole(Roles.USER)
-                    .antMatchers("/v2/api-docs",
-                            "/configuration/ui",
-                            "/swagger-resources/**",
-                            "/configuration/security",
-                            "/swagger-ui.html",
-                            "/webjars/**")
-                        .permitAll()
-                    .antMatchers(HttpMethod.GET, "/api/post/**")
-                        .permitAll()
-                    .antMatchers(HttpMethod.POST, "/api/user/v1", "/api/user/v1/login")
-                        .permitAll()
-                    .anyRequest().denyAll()
+                .antMatchers("/api/tag/**")
+                .hasRole(Roles.USER)
+                .antMatchers(HttpMethod.POST, "/api/post/**")
+                .hasRole(Roles.USER)
+                .antMatchers(HttpMethod.PATCH, "/api/post/**")
+                .hasRole(Roles.USER)
+                .antMatchers(HttpMethod.DELETE, "/api/post/**")
+                .hasRole(Roles.USER)
+                .antMatchers(HttpMethod.DELETE, "/api/user/**")
+                .hasRole(Roles.USER)
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/post/**")
+                .permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/v1", "/api/user/v1/login")
+                .permitAll()
+                .anyRequest().denyAll()
                 .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 }

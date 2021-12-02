@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public Optional<User> getUserLogged () {
+    public Optional<User> getUserLogged() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findByLogin(authentication.getName());
     }

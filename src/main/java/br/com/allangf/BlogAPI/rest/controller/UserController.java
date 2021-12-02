@@ -2,24 +2,17 @@ package br.com.allangf.BlogAPI.rest.controller;
 
 
 import br.com.allangf.BlogAPI.domain.entity.User;
-
 import br.com.allangf.BlogAPI.rest.Service.UserService;
-
 import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
 import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/v1/getloggeduser")
-    public Optional<User> getUserLogged () {
+    public Optional<User> getUserLogged() {
         return userService.getUserLogged();
     }
 
