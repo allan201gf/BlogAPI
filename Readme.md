@@ -127,19 +127,19 @@ DELETE  /api/post/v1/{id}
 
 #### Listagem de posts
 Este endpoint retorna todos os posts de forma completa.<br>
-Os posts de retorno não contaram como uma visualização.
+Os posts de retorno não contarão como uma visualização.
 ~~~
 GET  /api/post/v1
 ~~~
 #### Listagem resumida de posts
 Este endpoint retorna todos os posts de forma resumida, são exibidos apenas os primeiros 120 caracteres.<br>
-Os posts de retorno não contaram como uma visualização.
+Os posts de retorno não contarão como uma visualização.
 ~~~
 GET  /api/post/v1/allPostAbstract
 ~~~
 #### Listagem resumida dos posts mais acessados
 Este endpoint retorna os posts mais acessados de forma resumida.<br>
-Os posts de retorno não contaram como uma visualização.
+Os posts de retorno não contarão como uma visualização.
 ~~~
 GET  /api/post/v1/postMostAccessed
 ~~~
@@ -149,15 +149,15 @@ O post de retorno contará uma visualização.
 GET  /api/post/v1/searchPostById/{id}
 ~~~
 #### Pesquisa de posts por data de publicação
-Este endpoint retorna os posts que foram publicados dentro do intervalo de tempo informado.<br>
-Os posts de retorno não contaram como uma visualização.
+Este endpoint retorna os posts que foram publicados no intervalo de tempo informado.<br>
+Os posts de retorno não contarão como uma visualização.
 ~~~
 GET  /api/post/v1/searchPostByTimeInterval?dateStart=01/01/2010&dateEnd=01/01/2030
 Alterar dateStart e dateEnd
 ~~~
 #### Pesquisa de posts pelo título
 Este endpoint retorna os posts que possuem em seu título o termo de pesquisa.<br>
-Os posts de retorno não contaram como uma visualização.
+Os posts de retorno não contarão como uma visualização.
 ~~~
 GET  http://localhost/api/post/v1/searchPostByTitle?title=TextoDaPesquisa
 ~~~
