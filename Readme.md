@@ -8,6 +8,43 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 > http://localhost:80/swagger-ui.html
 
 ## Features
+
+### Registro e Login de usuários
+Para criar um post na plataforma é necessário que o usuário esteja logado.
+#### Cadastro de usuário
+Para cadastrar um usuário devemos bater no endpoint:
+
+~~~
+POST /api/user/v1
+~~~
+Dados no body:
+~~~
+{
+    "name": "Nome do novo usuário",
+    "birthDate": "02/01/1998",
+    "email": "email@email.com",
+    "login": "logindousuário",
+    "password": "senhadousuário"
+}
+~~~
+
+#### Login de usuário
+~~~
+POST /api/user/v1/login
+~~~
+Dados no body:
+~~~
+{
+    "login": "loginteste",
+    "password": "senhateste"
+}
+~~~
+Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado no header em todas as requisições que requerem o usuário logado
+
+
+
+
+
 * Criação e exclusão de user sem SpringSecurity [✔] (Inativado)
 * Criação e exclusão de tags de forma manual [✔]
 * Exibição de todas as tags [✔]
