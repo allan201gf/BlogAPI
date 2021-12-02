@@ -1,14 +1,16 @@
 # BlogAPI
 
-Projeto de uma API para gerenciamento de postagens em um blog.<br/>
-O intuito desta API é utilizar-se de diversas opções do SpringBoot de modo a aprimorar minhas habilidades com a tecnologia.
+Projeto de uma API para gerenciamento de postagens em um blog utilizando autenticação.<br/>
+O intuito desta API é utilizar-se de diversos recursos do SpringBoot, incluindo Spring Security de modo a aprimorar minhas habilidades com a tecnologia.
 
-A documentação dos endpoints é feita via Swagger e pode ser acessada no link abaixo após o start do servidor:
+
+
+A documentação dos endpoints é feita via Swagger no link abaixo e algumas informações podem ser consultadas neste mesmo arquivo:
 
 > http://localhost:80/swagger-ui.html
 
 ## Features
-Implementaçõs do sistema, para consultar os modelos de respostas da aplicação deve-se utilizar o Swagger no link acima.
+Implementaçõs do sistema, para consultar os modelos de respostas da aplicação deve-se utilizar o Swagger no link acima.<br>
 
 ### Registro e Login de usuários
 Para criar um post na plataforma é necessário que o usuário esteja logado.
@@ -40,31 +42,31 @@ Dados no body:
     "password": "senhateste"
 }
 ~~~
-Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado no header em todas as requisições que requerem o usuário logado
+Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado no header em todas as requisições que requerem o usuário logado.
 
 ### Listagem de usuários do sistema
-Este endpoint retorna todos os usuários cadastrados no sistema
+Este endpoint retorna todos os usuários cadastrados no sistema.
 > Para utilizar este endpoint o usuário deve estar logado
 ~~~
 GET /api/user/v1
 ~~~
 
 ### Dados do usuário logado
-Este endpoint retorna os dados do usuário que está logado
+Este endpoint retorna os dados do usuário que está logado.
 > Para utilizar este endpoint o usuário deve estar logado
 ~~~
 GET  /api/user/v1/getloggeduser
 ~~~
 
 ### Deletar usuário logado
-Utilize este endpoint para deletar o usuário que está logado
+Utilize este endpoint para deletar o usuário que está logado.
 > Para utilizar este endpoint o usuário deve estar logado
 ~~~
 DELETE  /api/user/v1/delete
 ~~~
 
 ### Tags
-As tags são utilizadas como categoria para os posts, elas podem ser criadas a partir de endpoints especificos, ou se na criação do post ela ainda não exista, será criada automaticamente
+As tags são utilizadas como categoria para os posts, elas podem ser criadas a partir de endpoints especificos, ou se na criação do post ela ainda não exista, será criada automaticamente.
 
 #### Criação de tags
 > Para utilizar este endpoint o usuário deve estar logado
@@ -94,7 +96,7 @@ GET  /api/tag/v1/searchPostByTag/{nameTag}
 ~~~
 
 ### Posts
-O gerenciamento dos posts ficam por conta os usuários logados, a exibição e pesquisa podem ser acessados sem a autenticação
+O gerenciamento dos posts ficam por conta os usuários logados, a exibição e pesquisa podem ser acessados sem a autenticação.
 
 #### Criação de posts
 > Para utilizar este endpoint o usuário deve estar logado
@@ -117,24 +119,76 @@ Dados no body:
         ]
 }
 ~~~
+#### Exclusão de posts
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+DELETE  /api/post/v1/{id}
+~~~
 
-### Itens a serem incluidos na documentação
+#### Listagem de posts
+Este endpoint retorna todos os posts de forma completa.<br>
+Os posts de retorno não contaram como uma visualização.
+~~~
+GET  /api/post/v1
+~~~
+#### Listagem resumida de posts
+Este endpoint retorna todos os posts de forma resumida, são exibidos apenas os primeiros 120 caracteres.<br>
+Os posts de retorno não contaram como uma visualização.
+~~~
+GET  /api/post/v1/allPostAbstract
+~~~
+#### Listagem resumida dos posts mais acessados
+Este endpoint retorna os posts mais acessados de forma resumida.<br>
+Os posts de retorno não contaram como uma visualização.
+~~~
+GET  /api/post/v1/postMostAccessed
+~~~
+#### Acesso de post por id
+O post de retorno contará uma visualização.
+~~~
+GET  /api/post/v1/searchPostById/{id}
+~~~
+#### Pesquisa de posts por data de publicação
+Este endpoint retorna os posts que foram publicados dentro do intervalo de tempo informado.<br>
+Os posts de retorno não contaram como uma visualização.
+~~~
+GET  /api/post/v1/searchPostByTimeInterval?dateStart=01/01/2010&dateEnd=01/01/2030
+Alterar dateStart e dateEnd
+~~~
+#### Pesquisa de posts pelo título
+Este endpoint retorna os posts que possuem em seu título o termo de pesquisa.<br>
+Os posts de retorno não contaram como uma visualização.
+~~~
+GET  http://localhost/api/post/v1/searchPostByTitle?title=TextoDaPesquisa
+~~~
+#### Edição de posts
+Utilize este endpoint para editar o conteúdo de um post especifico informando seu Id.<br>
+Informe no body da requisição apenas os itens que deseja alterar.<br>
+É possível editar apenas os posts que foram cadastrados pelo usuário logado.
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+PATCH  /api/post/v1/updatePostById/{IdPost}
+~~~
+Dados no body:
+~~~
+{
+    "title": "primeiro post editado",
+    "postBody": "Editado Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+    of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+    Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMake
+    including versions of Lorem Ipsum.",
+    "tag": [
+        "Tecnologia",
+        "Carro"
+        ]
+}
+~~~
 
-* Criação e exclusão de tags de forma manual [✔]
-* Exibição de todas as tags [✔]
-* Caso a tag escolhida no post não exista, cria-la automaticamente [✔]
-* Criação e exclusão de posts [✔]
-* Exibição de todos os posts [✔]
-* Pesquisa por posts a partir de uma determinada tag [✔]
-* Pesquisa por post pelo título [✔]
-* Visualização resumida dos posts [✔]
-* Filtragem de posts por data [✔]
-* Contagem de acessos de cada post [✔] (A contagem só é incrementada quando um post é acessado de forma completa)
-* Exibir posts mais acessados [✔] (retorna os 5 posts mais acessados)
-* Edição de posts [✔]
-* Travar a exclusão de tags que possuem posts associados [✔]
-* Métodos para registrar e logar no sistema [✔]
-* Implementação para apenas o usuário que criou o post poder edita-lo [✔]
+### Futuras implementações
+
+* Criação do usuário administrador que possa manipular qualquer post publicado por qualquer usuário do sistema.
 * ...
 
 ## 🛠️ Em desenvolvimento com
