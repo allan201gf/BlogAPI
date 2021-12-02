@@ -51,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .hasRole(Roles.USER)
                     .antMatchers(HttpMethod.PATCH, "/api/post/**")
                         .hasRole(Roles.USER)
+                    .antMatchers(HttpMethod.DELETE, "/api/user/**")
+                        .hasRole(Roles.USER)
                     .antMatchers("/v2/api-docs",
                             "/configuration/ui",
                             "/swagger-resources/**",
@@ -62,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/post/**")
                         .permitAll()
-                    .antMatchers("/api/user/**")
+                    .antMatchers(HttpMethod.POST, "/api/user/v1", "/api/user/v1/login")
                         .permitAll()
                     .anyRequest().denyAll()
                 .and()

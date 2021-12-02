@@ -18,7 +18,7 @@ public interface UserService {
 
     List<User> allUser();
 
-    void deleteUser(int userId);
+    void deleteUser();
 
     public TokenDTO authenticate(CredentialsDTO credentialsDTO);
 

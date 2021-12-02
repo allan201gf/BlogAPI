@@ -8,6 +8,7 @@ A documentação dos endpoints é feita via Swagger e pode ser acessada no link 
 > http://localhost:80/swagger-ui.html
 
 ## Features
+Implementaçõs do sistema, para consultar os modelos de respostas da aplicação deve-se utilizar o Swagger no link acima.
 
 ### Registro e Login de usuários
 Para criar um post na plataforma é necessário que o usuário esteja logado.
@@ -41,11 +42,33 @@ Dados no body:
 ~~~
 Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado no header em todas as requisições que requerem o usuário logado
 
+### Listagem de usuários do sistema
+Este endpoint retorna todos os usuários cadastrados no sistema
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+GET /api/user/v1
+~~~
+
+### Dados do usuário logado
+Este endpoint retorna os dados do usuário que está logado
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+GET  /api/user/v1/getloggeduser
+~~~
+
+### Deletar usuário logado
+Utilize este endpoint para deletar o usuário que está logado
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+DELETE  /api/user/v1/delete
+~~~
 
 
 
 
-* Criação e exclusão de user sem SpringSecurity [✔] (Inativado)
+
+### Itens a serem incluidos na documentação
+
 * Criação e exclusão de tags de forma manual [✔]
 * Exibição de todas as tags [✔]
 * Caso a tag escolhida no post não exista, cria-la automaticamente [✔]
@@ -61,7 +84,6 @@ Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado n
 * Travar a exclusão de tags que possuem posts associados [✔]
 * Métodos para registrar e logar no sistema [✔]
 * Implementação para apenas o usuário que criou o post poder edita-lo [✔]
-* Login via Bearer token no Swagger [✔] (necessário obter o token via endpoint de login e digitar "Bearer " na frente)
 * ...
 
 ## 🛠️ Em desenvolvimento com
@@ -72,6 +94,8 @@ Após efetuar o login o sistema retornará o Bearer Token que deve ser enviado n
 * [H2 DataBase](https://www.h2database.com/html/main.html) - Banco de dados em memória
 * [Lombok](https://projectlombok.org/) - Facilitar a criação de construtores
 * [Swagger](https://swagger.io/tools/open-source/open-source-integrations/) - Listagem endpoints da API
+* [Spring Security](https://spring.io/projects/spring-security) - Autenticação de usuários
+* [Token JWT](https://github.com/jwtk/jjwt) - Criação do token de autenticação de usuários
 
 ## 📄 Licença
 

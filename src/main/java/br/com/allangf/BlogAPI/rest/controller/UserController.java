@@ -43,11 +43,11 @@ public class UserController {
         return userService.allUser();
     }
 
-    @ApiOperation("Delete user by Id")
-    @DeleteMapping("/v1/delete/id/{userId}")
+    @ApiOperation("Delete user logged")
+    @DeleteMapping("/v1/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable int userId) {
-        userService.deleteUser(userId);
+    public void deleteUser() {
+        userService.deleteUser();
     }
 
     @PostMapping("/v1/login")

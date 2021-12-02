@@ -70,9 +70,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int userId) {
+    public void deleteUser() {
         try {
-            userRepository.deleteById(userId);
+            Optional<User> loggedUser = getUserLogged();
+            userRepository.deleteById(loggedUser.get().getUserId());
         } catch (EmptyResultDataAccessException e) {
             throw new RuleOfException(Errors.USER_NOT_FOUND);
         }
