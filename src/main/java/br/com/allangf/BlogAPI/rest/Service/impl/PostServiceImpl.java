@@ -113,7 +113,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePostById(int id) {
-        postRepository.deleteById(id);
+
+        checkUserIntegration(id);
+
+        try {
+            postRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuleOfException(Errors.INVALID_POST_ID);
+        }
+
     }
 
     @Override
@@ -125,13 +133,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public void updatePostById(int id, PostDTO postDTO) {
 
-        User userLogged = userService.getUserLogged().orElseThrow(() -> new RuleOfException(Errors.USER_NOT_FOUND));
+        checkUserIntegration(id);
 
         Post post = postRepository.findByPostId(id).orElseThrow(() -> new RuleOfException(Errors.NO_POSTS_FOUND));
-
-        if (userLogged.getUserId() != post.getUser().getUserId()) {
-            throw new RuleOfException(Errors.POST_ANOTHER_USER);
-        }
 
         if (!postDTO.getPostBody().isEmpty()) {
             post.setPostBody(postDTO.getPostBody());
@@ -161,6 +165,14 @@ public class PostServiceImpl implements PostService {
             posts.get(i - 1).setPostBody(posts.get(i - 1).getPostBody().substring(0, 120).concat(" ..."));
         }
         return posts;
+    }
+
+    private void checkUserIntegration(int id) {
+        User userLogged = userService.getUserLogged().orElseThrow(() -> new RuleOfException(Errors.USER_NOT_FOUND));
+        Post post = postRepository.findByPostId(id).orElseThrow(() -> new RuleOfException(Errors.NO_POSTS_FOUND));
+        if (userLogged.getUserId() != post.getUser().getUserId()) {
+            throw new RuleOfException(Errors.POST_ANOTHER_USER);
+        }
     }
 
 

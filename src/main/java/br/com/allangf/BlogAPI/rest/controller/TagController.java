@@ -30,11 +30,13 @@ public class TagController {
         return tagService.allTag();
     }
 
+    @ApiOperation("Search post by tag")
     @GetMapping("/v1/searchPostByTag/{nameTag}")
     public List<Post> searchPostByTag(@PathVariable String nameTag) {
         return tagService.searchPostByTag(nameTag);
     }
 
+    @ApiOperation("Delete tag by id")
     @DeleteMapping("/v1/delete/{tagId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteTag(@PathVariable int tagId) {

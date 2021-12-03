@@ -43,11 +43,13 @@ public class UserController {
         userService.deleteUser();
     }
 
+    @ApiOperation("Login")
     @PostMapping("/v1/login")
     public TokenDTO authenticate(@RequestBody CredentialsDTO credentialsDTO) {
         return userService.authenticate(credentialsDTO);
     }
 
+    @ApiOperation("Get logged user")
     @GetMapping("/v1/getloggeduser")
     public Optional<User> getUserLogged() {
         return userService.getUserLogged();

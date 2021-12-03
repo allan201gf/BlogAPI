@@ -48,22 +48,28 @@ public class PostController {
         return postService.searchPostByTimeInterval(dateStart, dateEnd);
     }
 
+    @ApiOperation("Search post by id")
     @GetMapping("/v1/searchPostById/{id}")
     public Post searchPostById(@PathVariable int id) {
         return postService.getPostById(id);
     }
 
+    @ApiOperation("Delete post by id")
     @DeleteMapping("/v1/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePostById(@PathVariable int id) {
         postService.deletePostById(id);
     }
 
+    @ApiOperation("Return posts mos accessed")
     @GetMapping("/v1/postMostAccessed")
     public List<Post> postMostAccessed() {
         return postService.postMostAccessed();
     }
 
+    @ApiOperation("Update post by id")
     @PatchMapping("/v1/updatePostById/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePostById(@PathVariable int id, @RequestBody PostDTO postDTO) {
         postService.updatePostById(id, postDTO);
     }
