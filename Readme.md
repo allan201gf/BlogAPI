@@ -1,6 +1,6 @@
 # BlogAPI
 
-Projeto de uma API para gerenciamento de postagens em um blog utilizando autenticação.<br/>
+Projeto de uma API para gerenciamento de postagens em um blog utilizando autenticação e envio dos posts via e-mail.<br/>
 O intuito desta API é utilizar-se de diversos recursos do SpringBoot, incluindo Spring Security de modo a aprimorar minhas habilidades com a tecnologia.
 
 Para facilitar os testes da API, ela foi desenvolvida utilizando o banco de dados H2, 
