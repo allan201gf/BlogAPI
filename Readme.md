@@ -252,6 +252,7 @@ Dados no body:
 * [Swagger](https://swagger.io/tools/open-source/open-source-integrations/) - Listagem endpoints da API
 * [Spring Security](https://spring.io/projects/spring-security) - Autenticação de usuários
 * [Token JWT](https://github.com/jwtk/jjwt) - Criação do token de autenticação de usuários
+* [Spring Email](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail) - Envio de e-mails
 
 ## 📄 Licença
 
