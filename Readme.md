@@ -14,10 +14,10 @@ A documentação dos endpoints é feita via Swagger no link abaixo e algumas inf
 
 > http://localhost:80/swagger-ui.html
 
-##Versão e IDE de desenvolvimento
+## Versão e IDE de desenvolvimento
 O projeto foi desenvolvido utilizando a IDE IntelliJ utilizando o Java em sua versão 11.
 
-##Build do Projeto
+## Build do Projeto
 Para rodar o projeto não é necessário configurações extras, apenas clonar o projeto e fazer o build (requer java +11) 
 
 ## Features
