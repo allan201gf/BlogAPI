@@ -9,6 +9,7 @@ import br.com.allangf.BlogAPI.domain.repository.TagRepository;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
+import br.com.allangf.BlogAPI.rest.Service.EmailService;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
@@ -30,6 +31,7 @@ public class PostServiceImpl implements PostService {
     private final UserRepository userRepository;
     private final EntityManager entityManager;
     private final UserService userService;
+    private final EmailService emailService;
 
     public void createNewPost(PostDTO postDTO) {
 
@@ -68,8 +70,8 @@ public class PostServiceImpl implements PostService {
                 () -> new RuleOfException(Errors.USER_NOT_FOUND)
         ));
 
+        emailService.send(post.getTitle(), post.getPostBody());
         postRepository.save(post);
-
     }
 
     @Override

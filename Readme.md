@@ -18,7 +18,19 @@ A documentação dos endpoints é feita via Swagger no link abaixo e algumas inf
 O projeto foi desenvolvido utilizando a IDE IntelliJ utilizando o Java em sua versão 11.
 
 ## Build do Projeto
-Para rodar o projeto não é necessário configurações extras, apenas clonar o projeto e fazer o build (requer java +11) 
+Para rodar o projeto não é necessário configurações extras, apenas clonar o projeto e fazer o build (requer java +11).<br>
+Para o sistema de email funcionar é necessário preencher o login e senha da conta que enviará o email no arquivo abaixo.
+> resources/application.properties
+
+Preencher as linhas
+~~~
+spring.mail.username=
+spring.mail.password=
+~~~
+
+Caso for utilizar o serviço gratuito do Gmail, é necessário ativar a confiança de apps menos seguros no link abaixo
+
+https://www.google.com/settings/security/lesssecureapps?hl=pt_BR
 
 ## Features
 Implementações do sistema<br>
@@ -107,10 +119,35 @@ DELETE  /api/tag/v1/delete/{tagId}
 GET  /api/tag/v1/searchPostByTag/{nameTag}
 ~~~
 
+### Emails
+Os emails cadastrados pelos endpoints abaixo receberam um e-mail com o conteúdo do post sempre que ele for criado.
+
+#### Cadastro de email
+~~~
+POST  localhost/api/email/v1
+~~~
+Dados no body:
+~~~
+{
+    "email": "email@gmail.com"
+}
+~~~
+#### Exclusão de email
+~~~
+DELETE  localhost/api/email/v1
+~~~
+Dados no body:
+~~~
+{
+    "email": "email@gmail.com"
+}
+~~~
+
 ### Posts
 O gerenciamento dos posts ficam por conta os usuários logados, a exibição e pesquisa podem ser acessados sem a autenticação.
 
 #### Criação de posts
+
 > Para utilizar este endpoint o usuário deve estar logado
 ~~~
 POST  /api/post/v1

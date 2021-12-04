@@ -8,6 +8,7 @@ public class Errors {
     public static final String NAME_IS_REQUIRED = "Name is required";
     public static final String BIRTH_DATE_IS_REQUIRED = "BirthDate is required";
     public static final String USER_NOT_FOUND = "User not found";
+    public static final String EMAIL_NOT_FOUND = "Email not found";
     public static final String TAG_ALREADY_REGISTERED = "The tag is already exist";
     public static final String NO_POSTS_FOUND = "No posts found";
     public static final String TAG_IS_REQUIRED = "Tag is required";
@@ -20,4 +21,6 @@ public class Errors {
     public static final String PASSWORD_IS_REQUIRED = "Password is required";
     public static final String PASSWORD_IS_WRONG = "Password is wrong";
     public static final String POST_ANOTHER_USER = "Post was written by another user";
+    public static final String EMAIL_ERROR = "Failed to send some email, but post was saved";
+    public static final String EMAIL_LOGIN_ERROR = "Failed to connect SMTP";
 }
