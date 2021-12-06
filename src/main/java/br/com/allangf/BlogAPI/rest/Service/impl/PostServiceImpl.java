@@ -28,7 +28,6 @@ public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
-    private final UserRepository userRepository;
     private final EntityManager entityManager;
     private final UserService userService;
     private final EmailService emailService;
