@@ -3,9 +3,9 @@ package br.com.allangf.BlogAPI.rest.controller;
 
 import br.com.allangf.BlogAPI.domain.entity.User;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
-import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
+import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
+import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
+import br.com.allangf.BlogAPI.rest.dto.UserDTO;
 import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

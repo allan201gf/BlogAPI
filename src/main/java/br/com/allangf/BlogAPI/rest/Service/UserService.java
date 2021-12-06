@@ -1,9 +1,9 @@
 package br.com.allangf.BlogAPI.rest.Service;
 
 import br.com.allangf.BlogAPI.domain.entity.User;
-import br.com.allangf.BlogAPI.rest.config.dto.CredentialsDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.TokenDTO;
-import br.com.allangf.BlogAPI.rest.config.dto.UserDTO;
+import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
+import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
+import br.com.allangf.BlogAPI.rest.dto.UserDTO;
 
 import java.util.List;
 import java.util.Optional;

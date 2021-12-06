@@ -1,7 +1,7 @@
 package br.com.allangf.BlogAPI.rest.Service;
 
 import br.com.allangf.BlogAPI.domain.entity.Post;
-import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
+import br.com.allangf.BlogAPI.rest.dto.PostDTO;
 
 import java.util.List;
 

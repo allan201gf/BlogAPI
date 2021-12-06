@@ -12,7 +12,7 @@ import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.EmailService;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
-import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
+import br.com.allangf.BlogAPI.rest.dto.PostDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;

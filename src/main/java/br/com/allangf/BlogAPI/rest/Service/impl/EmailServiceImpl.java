@@ -5,7 +5,7 @@ import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
 import br.com.allangf.BlogAPI.domain.repository.EmailRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Service.EmailService;
-import br.com.allangf.BlogAPI.rest.config.dto.EmailDTO;
+import br.com.allangf.BlogAPI.rest.dto.EmailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailSendException;

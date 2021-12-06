@@ -1,4 +1,4 @@
-package br.com.allangf.BlogAPI.rest.config.dto;
+package br.com.allangf.BlogAPI.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package br.com.allangf.BlogAPI.rest.Service;
 
 import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.domain.entity.Tag;
-import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;
+import br.com.allangf.BlogAPI.rest.dto.TagDTO;
 
 import java.util.List;
 

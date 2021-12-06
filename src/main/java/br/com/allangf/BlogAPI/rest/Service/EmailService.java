@@ -1,6 +1,6 @@
 package br.com.allangf.BlogAPI.rest.Service;
 
-import br.com.allangf.BlogAPI.rest.config.dto.EmailDTO;
+import br.com.allangf.BlogAPI.rest.dto.EmailDTO;
 
 public interface EmailService {
 

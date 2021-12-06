@@ -3,7 +3,7 @@ package br.com.allangf.BlogAPI.rest.controller;
 import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.domain.entity.Tag;
 import br.com.allangf.BlogAPI.rest.Service.TagService;
-import br.com.allangf.BlogAPI.rest.config.dto.TagDTO;
+import br.com.allangf.BlogAPI.rest.dto.TagDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

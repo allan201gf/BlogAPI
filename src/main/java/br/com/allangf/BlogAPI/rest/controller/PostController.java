@@ -2,7 +2,7 @@ package br.com.allangf.BlogAPI.rest.controller;
 
 import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.rest.Service.PostService;
-import br.com.allangf.BlogAPI.rest.config.dto.PostDTO;
+import br.com.allangf.BlogAPI.rest.dto.PostDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
