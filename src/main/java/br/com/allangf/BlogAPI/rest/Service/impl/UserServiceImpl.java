@@ -47,10 +47,10 @@ public class UserServiceImpl implements UserService {
             throw new RuleOfException(Errors.NAME_IS_REQUIRED);
         }
 
-        List<User> existUser = userRepository.findByEmail(userDTO.getEmail());
+        List<User> existUser = userRepository.findByEmailOrLogin(userDTO.getEmail(), userDTO.getLogin());
 
         if (!existUser.isEmpty()) {
-            throw new RuleOfException(Errors.EMAIL_ALREADY_REGISTERED);
+            throw new RuleOfException(Errors.EMAIL_OR_LOGIN_ALREADY_REGISTERED);
         }
 
         User user = new User();
