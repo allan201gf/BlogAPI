@@ -45,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/tag/**")
+                .antMatchers("/api/tag/**",
+                        "/api/user/v1/getloggeduser")
                 .hasRole(Roles.USER)
                 .antMatchers(HttpMethod.POST, "/api/post/**")
                 .hasRole(Roles.USER)
@@ -55,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasRole(Roles.USER)
                 .antMatchers(HttpMethod.DELETE, "/api/user/**")
                 .hasRole(Roles.USER)
+                // Swagger and e-mail
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",
