@@ -45,17 +45,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                // Endpoints free
                 .antMatchers("/api/tag/**",
                         "/api/user/v1/getloggeduser")
-                .hasRole(Roles.USER)
+                .hasAnyRole(Roles.USER, Roles.ADMIN)
+                .antMatchers(HttpMethod.GET, "/api/post/**")
+                .permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/v1", "/api/user/v1/login")
+                .permitAll()
+                // User and Admin
                 .antMatchers(HttpMethod.POST, "/api/post/**")
-                .hasRole(Roles.USER)
+                .hasAnyRole(Roles.USER, Roles.ADMIN)
                 .antMatchers(HttpMethod.PATCH, "/api/post/**")
-                .hasRole(Roles.USER)
+                .hasAnyRole(Roles.USER, Roles.ADMIN)
                 .antMatchers(HttpMethod.DELETE, "/api/post/**")
-                .hasRole(Roles.USER)
+                .hasAnyRole(Roles.USER, Roles.ADMIN)
                 .antMatchers(HttpMethod.DELETE, "/api/user/**")
-                .hasRole(Roles.USER)
+                .hasAnyRole(Roles.USER, Roles.ADMIN)
                 // Swagger and e-mail
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
@@ -64,10 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**",
                         "/api/email/v1")
-                .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/post/**")
-                .permitAll()
-                .antMatchers(HttpMethod.POST, "/api/user/v1", "/api/user/v1/login")
                 .permitAll()
                 .anyRequest().denyAll()
                 .and()
