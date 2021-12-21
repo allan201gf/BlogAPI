@@ -40,8 +40,8 @@ public class Post {
                     CascadeType.MERGE
             })
     @JoinTable(name = "post_tag",
-            joinColumns = { @JoinColumn(name = "post_id") },
-            inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     private List<Tag> tag;
 
     @ManyToOne
