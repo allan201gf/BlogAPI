@@ -3,10 +3,12 @@ package br.com.allangf.BlogAPI.rest.controller;
 
 import br.com.allangf.BlogAPI.domain.entity.User;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
+import br.com.allangf.BlogAPI.rest.dto.AlterPasswordDTO;
 import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.dto.UserDTO;
 import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -53,6 +55,12 @@ public class UserController {
     @GetMapping("/v1/getloggeduser")
     public Optional<User> getUserLogged() {
         return userService.getUserLogged();
+    }
+
+    @ApiOperation("Alter password")
+    @PostMapping("/v1/alterpassword")
+    public void alterPassworld (@RequestBody AlterPasswordDTO alterPasswordDTO){
+        userService.alterPassword(alterPasswordDTO);
     }
 
 }

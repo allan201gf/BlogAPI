@@ -1,6 +1,7 @@
 package br.com.allangf.BlogAPI.rest.Service;
 
 import br.com.allangf.BlogAPI.domain.entity.User;
+import br.com.allangf.BlogAPI.rest.dto.AlterPasswordDTO;
 import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.dto.UserDTO;
@@ -19,5 +20,7 @@ public interface UserService {
     TokenDTO authenticate(CredentialsDTO credentialsDTO);
 
     Optional<User> getUserLogged();
+
+    void alterPassword(AlterPasswordDTO alterPasswordDTO);
 
 }

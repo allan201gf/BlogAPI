@@ -8,6 +8,7 @@ import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.Roles;
+import br.com.allangf.BlogAPI.rest.dto.AlterPasswordDTO;
 import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.dto.UserDTO;
@@ -100,6 +101,29 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUserLogged() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findByLogin(authentication.getName());
+    }
+
+    @Override
+    public void alterPassword(AlterPasswordDTO alterPasswordDTO) {
+        Optional<User> user = getUserLogged();
+        if(user.isEmpty()) {
+            throw new RuleOfException(Errors.USER_NOT_FOUND);
+        }
+
+        if (!alterPasswordDTO.getNewPassword().equals(alterPasswordDTO.getConfirmNewPassword())) {
+            throw new RuleOfException(Errors.NEW_PASSWORD_DONT_CHECK);
+        }
+
+        boolean checkPassword = passwordEncoder.matches(alterPasswordDTO.getCurrentPassword(), user.get().getPassword());
+
+        if (checkPassword) {
+            user.get().setPassword(passwordEncoder.encode(alterPasswordDTO.getNewPassword()));
+            userRepository.save(user.get());
+        } else {
+            throw new RuleOfException(Errors.CURRENT_PASSWORD_INVALID);
+        }
+
+
     }
 
 }

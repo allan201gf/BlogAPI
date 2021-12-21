@@ -53,7 +53,7 @@ public class EmailServiceImpl implements EmailService {
 
         List<Email> existEmail = emailRepository.findByEmail(emailDTO.getEmail());
         if (!existEmail.isEmpty()) {
-            throw new RuleOfException(Errors.EMAIL_ALREADY_REGISTERED);
+            throw new RuleOfException(Errors.EMAIL_OR_LOGIN_ALREADY_REGISTERED);
         }
 
         Email email = new Email();
