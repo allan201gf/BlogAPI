@@ -78,7 +78,6 @@ public class UserServiceImpl implements UserService {
         } catch (EmptyResultDataAccessException e) {
             throw new RuleOfException(Errors.USER_NOT_FOUND);
         }
-
     }
 
     @Override
@@ -122,8 +121,5 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new RuleOfException(Errors.CURRENT_PASSWORD_INVALID);
         }
-
-
     }
-
 }
