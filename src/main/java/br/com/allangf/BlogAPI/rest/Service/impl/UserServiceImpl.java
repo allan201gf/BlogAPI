@@ -1,8 +1,10 @@
 package br.com.allangf.BlogAPI.rest.Service.impl;
 
+import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.domain.entity.User;
 import br.com.allangf.BlogAPI.domain.exception.PasswordInvalidOfException;
 import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
+import br.com.allangf.BlogAPI.domain.repository.PostRepository;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
+    private final PostRepository postRepository;
 
     public User createNewUser(UserDTO userDTO) {
 
@@ -74,9 +77,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser() {
         try {
             Optional<User> loggedUser = getUserLogged();
+
             userRepository.deleteById(loggedUser.get().getUserId());
         } catch (EmptyResultDataAccessException e) {
             throw new RuleOfException(Errors.USER_NOT_FOUND);
+        } catch (Exception e) {
+            throw new RuleOfException(Errors.UNEBLE_DELETE_USER_ASSIGNED_POST);
         }
     }
 

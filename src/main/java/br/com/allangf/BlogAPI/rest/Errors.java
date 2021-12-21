@@ -25,4 +25,5 @@ public class Errors {
     public static final String EMAIL_LOGIN_ERROR = "Failed to connect SMTP";
     public static final String CURRENT_PASSWORD_INVALID = "Current password invalid";
     public static final String NEW_PASSWORD_DONT_CHECK = "New password and confirm password don't check";
+    public static final String UNEBLE_DELETE_USER_ASSIGNED_POST = "Unable to delete a user assigned to posts";
 }
