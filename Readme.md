@@ -89,6 +89,21 @@ Utilize este endpoint para deletar o usuário que está logado.
 DELETE  /api/user/v1/delete
 ~~~
 
+### Alterar senha do usuário logado
+Utilize este endpoint para alterar a senha do usuário logado.
+> Para utilizar este endpoint o usuário deve estar logado
+~~~
+POST  /api/user/v1/alterpassword
+~~~
+Dados no body:
+~~~
+{
+  "current_password": "string",
+  "new_password": "string",
+  "confirm_new_password": "string"
+}
+~~~
+
 ### Tags
 As tags são utilizadas como categoria para os posts, elas podem ser criadas a partir de endpoints especificos, ou se na criação do post ela ainda não exista, será criada automaticamente.
 
