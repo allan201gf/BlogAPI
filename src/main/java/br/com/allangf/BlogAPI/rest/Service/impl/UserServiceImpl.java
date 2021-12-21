@@ -1,20 +1,18 @@
 package br.com.allangf.BlogAPI.rest.Service.impl;
 
-import br.com.allangf.BlogAPI.domain.entity.Post;
 import br.com.allangf.BlogAPI.domain.entity.User;
 import br.com.allangf.BlogAPI.domain.exception.PasswordInvalidOfException;
 import br.com.allangf.BlogAPI.domain.exception.RuleOfException;
-import br.com.allangf.BlogAPI.domain.repository.PostRepository;
 import br.com.allangf.BlogAPI.domain.repository.UserRepository;
 import br.com.allangf.BlogAPI.rest.Errors;
 import br.com.allangf.BlogAPI.rest.Helpers;
 import br.com.allangf.BlogAPI.rest.Service.UserService;
 import br.com.allangf.BlogAPI.rest.config.Roles;
+import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
 import br.com.allangf.BlogAPI.rest.dto.AlterPasswordDTO;
 import br.com.allangf.BlogAPI.rest.dto.CredentialsDTO;
 import br.com.allangf.BlogAPI.rest.dto.TokenDTO;
 import br.com.allangf.BlogAPI.rest.dto.UserDTO;
-import br.com.allangf.BlogAPI.rest.config.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -37,7 +35,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
-    private final PostRepository postRepository;
 
     public User createNewUser(UserDTO userDTO) {
 
@@ -111,7 +108,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void alterPassword(AlterPasswordDTO alterPasswordDTO) {
         Optional<User> user = getUserLogged();
-        if(user.isEmpty()) {
+        if (user.isEmpty()) {
             throw new RuleOfException(Errors.USER_NOT_FOUND);
         }
 
